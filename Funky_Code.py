@@ -1,5 +1,5 @@
 
-char = "X"
+char = "W"
 
 
 print(f" {char*4}")
