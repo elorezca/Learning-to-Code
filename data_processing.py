@@ -19,14 +19,14 @@
 
 # print(sentence4)
 
-# sentence5 = input("Please enter your name: ")
+sentence5 = input("Please enter your name: ")
 
-# space1 = sentence5.find(' ')
+space1 = sentence5.find(' ')
 
-# newtext = sentence5[0].capitalize() + sentence5[space1+1].capitalize()
+newtext = sentence5[0].capitalize() + sentence5[space1+1].capitalize()
 
-# print(f"Your Initials are: {newtext}")
+print(f"Your Initials are: {newtext}")
 
-sentence6 = input("Please enter another string: ")
+# sentence6 = input("Please enter another string: ")
 
-print(f"The length of your string is: ", (len(sentence6)))
+# print(f"The length of your string is: ", (len(sentence6)))
