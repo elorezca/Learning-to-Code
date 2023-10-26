@@ -87,5 +87,3 @@ else:print ("The Circle has a larger circumference")
 if area_square > circle_area:print("The Sqaure has a larger arear")
 
 else:print ("The Circle has a larger area")
-
-
