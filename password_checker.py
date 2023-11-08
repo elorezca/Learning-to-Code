@@ -36,3 +36,5 @@ while True:
     another = input("Do you want to validate another password? (yes/no): ")
     if another.lower() != "yes":
         break
+
+    # completed
