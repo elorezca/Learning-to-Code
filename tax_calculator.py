@@ -38,32 +38,48 @@ STATE_TAX_BRACKETS = {
 def calculate_federal_tax(gross_salary):
     deducted_salary = gross_salary - FEDERAL_STANDARD_DEDUCTION
     federal_tax = 0
+    prev_bracket_limit = 0
+
     for bracket in FEDERAL_TAX_BRACKETS:
-        if deducted_salary > bracket[0]:
-            federal_tax += (bracket[0] - max(0, bracket[0] - deducted_salary)) * bracket[1]
-        else:
+        bracket_limit, tax_rate = bracket
+        taxable_amount_in_bracket = min(deducted_salary, bracket_limit) - prev_bracket_limit
+        federal_tax += taxable_amount_in_bracket * tax_rate
+        prev_bracket_limit = bracket_limit
+
+        if deducted_salary <= bracket_limit:
             break
-    
+
     return federal_tax
 
 def calculate_california_tax(gross_salary):
     deducted_salary = gross_salary - STATE_STANDARD_DEDUCTION['California']
     state_tax = 0
+    prev_bracket_limit = 0
+
     for bracket in STATE_TAX_BRACKETS['California']:
-        if deducted_salary > bracket[0]:
-            state_tax += (bracket[0] - (bracket[0] - deducted_salary)) * bracket[1]
-        else:
-            break
+            bracket_limit, tax_rate = bracket
+            taxable_amount_inbracket = min(deducted_salary, bracket_limit) - prev_bracket_limit
+            state_tax += taxable_amount_inbracket * tax_rate
+            prev_bracket_limit = bracket_limit
+
+            if deducted_salary <= bracket_limit:
+                break
+
     return state_tax
 
 def calculate_new_york_tax(gross_salary):
     deducted_salary = gross_salary - STATE_STANDARD_DEDUCTION['New York']
     state_tax = 0
-    for bracket in STATE_TAX_BRACKETS['New York']:
-        if deducted_salary > bracket[0]:
-            state_tax+= (bracket[0] - (bracket[0] - deducted_salary)) * bracket[1]
-        else:
-            break
+    prev_bracket_limit = 0
+
+    for bracket in STATE_TAX_BRACKETS['California']:
+            bracket_limit, tax_rate = bracket
+            taxable_amount_inbracket = min(deducted_salary, bracket_limit) - prev_bracket_limit
+            state_tax += taxable_amount_inbracket * tax_rate
+            prev_bracket_limit = bracket_limit
+
+            if deducted_salary <= bracket_limit:
+                break
     return state_tax
     
 def calculate_fica(gross_salary):
