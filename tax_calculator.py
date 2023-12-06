@@ -39,7 +39,7 @@ def calculate_federal_tax(gross_salary):
     deducted_salary = gross_salary - FEDERAL_STANDARD_DEDUCTION
     federal_tax = 0
     for bracket in FEDERAL_TAX_BRACKETS:
-        if deducted_salary > bracket[0]:
+        if deducted_salary >= bracket[0]:
             federal_tax += (bracket[0] - max(0, bracket[0] - deducted_salary)) * bracket[1]
         else:
             break
@@ -71,22 +71,22 @@ def calculate_fica(gross_salary):
     fica_limit = 147000
     return min(gross_salary * fice_rate, fica_limit)
 
-Gross_Salary = float(input("Please enter you gross salary: "))
-state = input("Please enter the sate you live in (California or New York): ")
+GROSS_SALARY = float(input("Please enter you gross salary: "))
+STATE = input("Please enter the sate you live in (California or New York): ")
 
-federal_tax = calculate_federal_tax(Gross_Salary)
+federal_tax = calculate_federal_tax(GROSS_SALARY)
 state_tax = 0
 
-if state == 'California':
-    state_tax = calculate_california_tax(Gross_Salary)
-elif state == 'New York':
-    state_tax = calculate_new_york_tax(Gross_Salary)
+if STATE == 'California':
+    state_tax = calculate_california_tax(GROSS_SALARY)
+elif STATE == 'New York':
+    state_tax = calculate_new_york_tax(GROSS_SALARY)
 
-fica = calculate_fica(Gross_Salary)
+fica = calculate_fica(GROSS_SALARY)
 
-net_salary = Gross_Salary - federal_tax - state_tax - fica
+net_salary = GROSS_SALARY - federal_tax - state_tax - fica
 
-print(f"Gross Salary: ${Gross_Salary:.2f}")
+print(f"Gross Salary: ${GROSS_SALARY:.2f}")
 print(f"Federal Tax: ${federal_tax:.2f}")
 print(f"State Tax: ${state_tax:.2f}")
 print(F'FICA: ${fica:.2f}')
