@@ -1,7 +1,6 @@
 
 def move_forward():
         print("moving forward")
-
 def turn(direction):
         print(f"turning {direction}")
 
@@ -11,7 +10,7 @@ def start_engine():
 def stop_engine():
        print("stopping engine")  
 
-destination = input("Where do you want to go? ")
+destination = input("Where do you want to go? (school, grocery store, dentist, restaurant) ")
 
 start_engine()
 move_forward()
